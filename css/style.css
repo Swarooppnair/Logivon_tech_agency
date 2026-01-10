@@ -1,0 +1,528 @@
+/* 
+   Logivon Global Technology Services
+   Design System: Premium, Futuristic, Minimal
+   Palette: Dark Neutrals + Electric Blue Accents
+*/
+
+:root {
+    /* GitHub-inspired Palette */
+    --bg-dark: #0d1117;
+    /* Main background (very dark blue-gray) */
+    --bg-darker: #010409;
+    /* Deepest background */
+    --bg-card: #161b22;
+    /* Card background */
+    --text-primary: #f0f6fc;
+    /* White-ish text */
+    --text-secondary: #8b949e;
+    /* Muted gray text */
+    --accent-blue: #238636;
+    /* GitHub Green/Blue mix (using Green for action like GitHub) or we stick to Blue? User asked for GitHub style. Let's use a tech Blue/Purple gradient focus. */
+    --accent-primary: #58a6ff;
+    /* GitHub Blue */
+    --accent-glow: #bc8cff;
+    /* GitHub Purple */
+    --border-color: #30363d;
+    /* Subtle border */
+
+    /* Typography - System Stack like GitHub */
+    --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+    /* Spacing */
+    --container-width: 1280px;
+    /* Slightly wider */
+    --section-padding: 120px 0;
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-y: scroll;
+    scroll-padding-top: 0;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.5;
+    overflow-x: hidden;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Utilities */
+.container {
+    width: 90%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Premium Full-Page Sections */
+.section,
+.hero {
+    min-height: 100vh;
+    /* Changed to min-height for safety on mobile */
+    height: 100vh;
+    /* Try to force full height for the snap feel */
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    /* Remove padding as we are centering */
+    overflow: hidden;
+    /* Prevent spillover */
+}
+
+/* Ensure content inside doesn't overflow awkwardly */
+.hero,
+.about-section,
+.team-section,
+.contact-section {
+    position: relative;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, #fff, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Buttons */
+/* GitHub Style Buttons */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    /* More compact */
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    /* Slightly more rounded */
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+    line-height: 20px;
+}
+
+.btn-primary {
+    background-color: var(--text-primary);
+    /* White button often used */
+    color: var(--bg-darker);
+    border: 1px solid var(--text-primary);
+}
+
+.btn-primary:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.02);
+    /* Subtle scale */
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    margin-left: 1rem;
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    padding: 15px 0;
+    /* Reduced padding slightly to accommodate image logo */
+    background: rgba(10, 10, 10, 0.95);
+    /* darker for contrast with logo if needed */
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo-link {
+    display: block;
+    line-height: 0;
+    /* Remove extra space below image */
+}
+
+.logo-img {
+    height: 40px;
+    /* Adjust height as needed */
+    width: auto;
+    border-radius: 4px;
+    /* Slight rounding if it's a blocky jpg */
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+.nav-links a:hover {
+    color: var(--text-primary);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    background: var(--bg-darker);
+    overflow: hidden;
+}
+
+/* Cinematic Background with Globe */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../images/globe-hero.png') no-repeat center center/cover;
+    z-index: 0;
+    opacity: 0.6;
+    /* Ensure text pops */
+    /* No blur or heavy animation needed for this high-quality asset, maybe slight slow pan */
+    animation: galaxyPan 60s infinite linear;
+}
+
+@keyframes galaxyPan {
+    0% {
+        background-position: center top;
+    }
+
+    50% {
+        background-position: center bottom;
+    }
+
+    100% {
+        background-position: center top;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+}
+
+.hero h1 {
+    font-size: 5rem;
+    /* Massive heading like GitHub */
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    letter-spacing: -2px;
+    background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
+    /* Subtle metallic gradient or colored? Let's go white to subtle gray for premium feel, or colorful. GitHub is often white text on dark. Let's stick to clean white with a text-shadow/glow. */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+/* Gradient Text accent inside H1 if we split it - for now keep H1 clean. */
+
+.hero .tagline {
+    font-size: 1.5rem;
+    /* Slightly larger */
+    color: var(--text-secondary);
+    /* Lighter for better contrast against dark bg */
+    margin-bottom: 3.5rem;
+    font-weight: 400;
+}
+
+/* About Section */
+.about-section {
+    background-color: var(--bg-dark);
+}
+
+.about-text p {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 900px;
+}
+
+.about-text .lead {
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    font-weight: 400;
+    border-left: 3px solid var(--accent-blue);
+    padding-left: 20px;
+}
+
+/* Team Section */
+.team-section {
+    background-color: var(--bg-card);
+    /* Slightly lighter for contrast */
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.team-card {
+    height: 300px;
+    /* Fixed height for consistent cards */
+    position: relative;
+    perspective: 1000px;
+    cursor: default;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.card-front h3 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.card-front .role {
+    color: var(--accent-blue);
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.tech-stack-mini span {
+    display: inline-block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    margin-right: 5px;
+    border-radius: 4px;
+}
+
+/* Team Card Hover Effect - Overlay Slide Up */
+.card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 10, 10, 0.95);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease-in-out;
+    pointer-events: none;
+    /* Let clicks pass through if needed, though cards act as display */
+}
+
+.team-card:hover .card-overlay {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.overlay-content h3 {
+    margin-bottom: 0.2rem;
+}
+
+.overlay-content .bio {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 1rem 0;
+    line-height: 1.5;
+}
+
+.skills-list li {
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    margin-bottom: 0.3rem;
+}
+
+/* Contact/Footer */
+.contact-section {
+    background-color: var(--bg-darker);
+    padding-bottom: 2rem;
+}
+
+
+.contact-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+/* Form styles removed as per user request */
+
+.info-item {
+    margin-bottom: 2rem;
+}
+
+.info-item .label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+}
+
+.info-item .value {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.main-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    text-align: center;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* Animations */
+.hidden-on-load {
+    /* Basic state for elements that will be animated on load or scroll */
+}
+
+/* Premium Entry Animations */
+.fade-up {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    filter: blur(10px);
+    transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    /* "Ease-out-expo" feel */
+    will-change: transform, opacity, filter;
+}
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+}
+
+/* Stagger Delays */
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
+
+.delay-3 {
+    transition-delay: 0.6s;
+}
+
+/* Section Transitions */
+.section {
+    transition: background-color 0.5s ease;
+}
+
+/* Scroll Snap Polish */
+html {
+    scroll-padding-top: 0;
+    /* Ensure snap aligns perfectly */
+}
+
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .nav-links {
+        display: none;
+        /* Ideally adding a mobile menu toggle, but keeping minimal as requested */
+    }
+
+    .btn-secondary {
+        margin-left: 0;
+        margin-top: 1rem;
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .btn-primary {
+        display: block;
+        width: 100%;
+        text-align: center;
+    }
+}
