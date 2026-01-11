@@ -89,17 +89,18 @@ img {
 .section,
 .hero {
     min-height: 100vh;
-    /* Changed to min-height for safety on mobile */
-    height: 100vh;
-    /* Try to force full height for the snap feel */
-    scroll-snap-align: start;
+    /* Fallback */
+    min-height: 100dvh;
+    /* Mobile-friendly dynamic height */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0;
-    /* Remove padding as we are centering */
+    padding: 80px 0;
+    /* Reduced default padding, allow flex to center */
     overflow: hidden;
     /* Prevent spillover */
+    position: relative;
+    /* Ensure stacking context */
 }
 
 /* Ensure content inside doesn't overflow awkwardly */
@@ -259,8 +260,8 @@ img {
 }
 
 .hero h1 {
-    font-size: 5rem;
-    /* Massive heading like GitHub */
+    font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
+    /* Responsive scaling */
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
@@ -468,6 +469,16 @@ html {
 }
 
 @media (max-width: 768px) {
+
+    /* Mobile adjustments */
+    .section,
+    .hero {
+        min-height: auto;
+        /* Let content dictate height on mobile to prevent cut-off */
+        padding: 60px 0;
+        height: auto;
+        /* Disable fixed height on mobile */
+    }
 
     /* Mobile adjustments */
     .navbar {
